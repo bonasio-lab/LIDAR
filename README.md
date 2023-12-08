@@ -37,6 +37,10 @@ R packages for downstream analysis (can be run without downstream analysis)
 
 Running instructions:
 
+A STAR index for the genome must be created before you run for the first time. To do so, go into the "index" folder, the correct species, and enter the genome_STAR folder. The fasta files provided have rRNA repeats and tRNAs masked, then added to the end of the fasta. Run the following command:
+
+STAR --runMode genomeGenerate --runThreadN < # of threads > --genomeDir . --genomeFastaFiles genome_rRNA_tRNA.fa 
+
 A sample table is required, with one row for each column and 4 (or 3 in single-end mode) columns:
 sample_name    R1_file	    R2_file    library_type
 
