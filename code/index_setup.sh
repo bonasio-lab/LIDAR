@@ -25,8 +25,6 @@ gunzip ../index/$species/*gz
 gunzip ../index/$species/tRNA_GSNAP/*gz
 gunzip ../index/$species/tRNA_SNP/*gz
 
-exit 1
-
 if [ ! -d ../index/$species/genome_STAR ]
 then	
     mkdir ../index/$species/genome_STAR
