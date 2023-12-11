@@ -9,9 +9,10 @@ Scacchetti, A., Shields, E.J., Trigg, N.A., Wilusz, J.E., Conine, C.C., and Bona
 -------------------------------
 Installation instructions:
 
-No complilation is required, simply download and run with instructions below. The following dependencies are required:<br />
+No compilation is required, but some setup is required for the indexes (see below). The following dependencies are required:<br />
 -COPE (https://sourceforge.net/projects/coperead/) - place in PATH or provide its location with -c <path/to/cope/><br />
 -trim_galore<br />
+-bedtools
 -samtools ver > 1.16<br />
 -UMI_tools<br />
 -cutadapt<br />
@@ -21,7 +22,7 @@ No complilation is required, simply download and run with instructions below. Th
 -bowtie2<br />
 <br />
 Other than COPE, these can be installed with conda:<br />
-conda create -n LIDAR -c bioconda cutadapt trim-galore umi_tools bowtie2 samtools=1.16 gmap=2019.02.26 STAR=2.7.10a bbmap<br />
+conda create -n LIDAR -c bioconda cutadapt trim-galore umi_tools bowtie2 samtools=1.16 gmap=2019.02.26 STAR=2.7.10a bbmap bedtools<br />
 <br />
 <br />
 R packages for downstream analysis (can be run without downstream analysis)<br />
@@ -35,12 +36,18 @@ R packages for downstream analysis (can be run without downstream analysis)<br /
 <br />
 -------------------------------<br />
 <br />
+Setup instructions:
+Genome indexes for the genome must be created before you run for the first time, which will take some time. First, download the genome fasta for mm39 mouse or hg38 human from the appropriate bigZips directory and place in the index/mmus/ or index/hsap folder.<br />
+mmus: https://hgdownload.soe.ucsc.edu/goldenPath/mm39/bigZips/mm39.fa.gz   <br />
+hsap: https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz  <br />
+
+Then, with STAR 2.7.10a, bowtie2, and bedtools available, run the index setup code for the species of interest using code/index_setup.sh  <mmus/hsap> <# threads>  < br />
+
+<br />
+-------------------------------<br />
+<br />
 Running instructions:<br />
-<br />
-A STAR index for the genome must be created before you run for the first time. To do so, go into the "index" folder, the correct species, and enter the genome_STAR folder. The fasta files provided have rRNA repeats and tRNAs masked, then added to the end of the fasta. Run the following command:<br />
-<br />
-STAR --runMode genomeGenerate --runThreadN < # of threads > --genomeDir . --genomeFastaFiles genome_rRNA_tRNA.fa <br />
-<br />
+
 A sample table is required, with one row for each column and 4 (or 3 in single-end mode) columns:<br />
 sample_name    R1_file	    R2_file    library_type<br />
 <br />
