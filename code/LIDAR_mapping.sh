@@ -537,19 +537,19 @@ if [ $mode == "basic" ] || [ $mode == "analyze_only" ]
        echo "mapping single reads to snoRNA with bowtie2"
        echo "$br2"
        
-       /home/emily/data/EJ25/code/map_ncRNA.sh single ${ncRNA_bowtie} snoRNA $sample_name $threads ${sample_name}.single.rRNA.Unmapped.out.mate1
+       $code_dir/map_ncRNA.sh single ${ncRNA_bowtie} snoRNA $sample_name $threads ${sample_name}.single.rRNA.Unmapped.out.mate1
 
        echo "$br"
        echo "mapping single reads to snRNA with bowtie2"
        echo "$br2"
        
-       /home/emily/data/EJ25/code/map_ncRNA.sh single ${ncRNA_bowtie} snRNA $sample_name $threads ${sample_name}.single.snoRNA.remap.single
+       $code_dir/map_ncRNA.sh single ${ncRNA_bowtie} snRNA $sample_name $threads ${sample_name}.single.snoRNA.remap.single
 
        echo "$br"
        echo "mapping single reads to piRNA with bowtie2"
        echo "$br2"
        
-       /home/emily/data/EJ25/code/map_ncRNA.sh single ${ncRNA_bowtie} piRNA $sample_name $threads ${sample_name}.single.snRNA.remap.single
+       $code_dir/map_ncRNA.sh single ${ncRNA_bowtie} piRNA $sample_name $threads ${sample_name}.single.snRNA.remap.single
 
        gzip ${sample_name}.single.rRNA.Unmapped.out.mate1
        gzip ${sample_name}.single.snoRNA.remap.single
